@@ -2,8 +2,8 @@
 In this repository I will add validation rules that I use in my SaaS app. I think especially Swedish developers will find them handy.
 
 ## Requirements
-- PHP 8.0|8.1+
-- Laravel v9.0+
+- PHP 8.1
+- Laravel v9.0
 
 ## Installation
 ```bash
