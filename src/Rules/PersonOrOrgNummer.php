@@ -2,13 +2,7 @@
 
 namespace Tanthammar\LaravelRules\Rules;
 
-use App\Helpers\BookonsHelpers;
 use Illuminate\Contracts\Validation\Rule;
-use Intervention\Validation\Validator;
-use Intervention\Validation\Exception\ValidationException;
-use Personnummer\Personnummer as PersonNummerVerifier;
-use Personnummer\PersonnummerException;
-use TantHammar\LaravelRules\Helpers;
 
 class PersonOrOrgNummer implements Rule
 {

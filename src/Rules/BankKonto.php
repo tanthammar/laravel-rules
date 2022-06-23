@@ -18,11 +18,10 @@ class BankKonto implements Rule
     public function passes($attribute, $value): bool
     {
         try {
-            $account = (new AccountFactory)->createAccount($value);
+            return filled((new AccountFactory)->createAccount($value));
         } catch (Exception $e) {
             return false;
         }
-        return filled($account);
     }
 
     /**

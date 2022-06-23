@@ -18,11 +18,10 @@ class OrgNummer implements Rule
     public function passes($attribute, $value): bool
     {
         try {
-            $boolean = (new Luhn)->passes(attribute: null, value: Helpers::clean_numbers($value));
+            return (new Luhn)->passes(attribute: null, value: Helpers::clean_numbers($value));
         } catch (\Exception $e) {
             return false;
         }
-        return $boolean;
     }
 
     /**

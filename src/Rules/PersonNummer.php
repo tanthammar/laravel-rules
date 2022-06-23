@@ -2,10 +2,8 @@
 
 namespace Tanthammar\LaravelRules\Rules;
 
-use App\Helpers\BookonsHelpers;
 use Illuminate\Contracts\Validation\Rule;
 use Personnummer\Personnummer as PersonNummerVerifier;
-use Personnummer\PersonnummerException;
 use TantHammar\LaravelRules\Helpers;
 
 class PersonNummer implements Rule
@@ -20,11 +18,10 @@ class PersonNummer implements Rule
     public function passes($attribute, $value): bool
     {
         try {
-            $boolean = PersonNummerVerifier::valid(Helpers::clean_numbers($value));
+            return PersonNummerVerifier::valid(Helpers::clean_numbers($value));
         } catch (\Exception $e) {
             return false;
         }
-        return $boolean;
     }
 
     /**

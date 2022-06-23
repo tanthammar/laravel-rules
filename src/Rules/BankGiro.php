@@ -19,11 +19,10 @@ class BankGiro implements Rule
     public function passes($attribute, $value): bool
     {
         try {
-            $account = (new BankgiroFactory)->createAccount($value);
+            return (new BankgiroFactory)->createAccount($value)->getBankName() === BankNames::BANK_BANKGIRO;
         } catch (Exception $e) {
             return false;
         }
-        return $account->getBankName() === BankNames::BANK_BANKGIRO;
     }
 
     /**

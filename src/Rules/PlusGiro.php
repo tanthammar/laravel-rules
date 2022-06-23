@@ -19,11 +19,10 @@ class PlusGiro implements Rule
     public function passes($attribute, $value): bool
     {
         try {
-            $boolean = (new PlusgiroFactory)->createAccount($value)->getBankName() === BankNames::BANK_PLUSGIRO;
+            return (new PlusgiroFactory)->createAccount($value)->getBankName() === BankNames::BANK_PLUSGIRO;
         } catch (Exception $e) {
             return false;
         }
-        return $boolean;
     }
 
     /**
