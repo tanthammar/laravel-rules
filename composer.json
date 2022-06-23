@@ -19,7 +19,9 @@
     "require": {
         "php": "^8.1",
         "brick/phonenumber": "^0.4.0",
+        "byrokrat/banking": "^2.2",
         "laravel/framework": "^9.0",
+        "intervention/validation": "^3.2",
         "spatie/laravel-package-tools": "^1.9.2"
     },
     "autoload": {
