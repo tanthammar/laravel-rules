@@ -1,0 +1,42 @@
+{
+    "name": "tanthammar/laravel-rules",
+    "description": "Custom validation rules for the Laravel Framework",
+    "keywords": [
+        "tanthammar",
+        "laravel",
+        "validation",
+        "rules"
+    ],
+    "homepage": "https://github.com/tanthammar/laravel-rules",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tina Hammar",
+            "email": "tinahammar@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "brick/phonenumber": "^0.4.0",
+        "laravel/framework": "^9.0",
+        "spatie/laravel-package-tools": "^1.9.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "TantHammar\\LaravelRules\\": "src"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "TantHammar\\LaravelRules\\LaravelRulesServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
