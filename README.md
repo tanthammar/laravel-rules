@@ -21,8 +21,8 @@ They are all used in the same way, following Laravel conventions.
 
 Example:
 ```php
-use Tanthammar\LaravelRules\Rules\PhoneNumber;
-use Tanthammar\LaravelRules\Rules\PersonNummer;
+use TantHammar\LaravelRules\Rules\PhoneNumber;
+use TantHammar\LaravelRules\Rules\PersonNummer;
 
 SomeField::make('phone')
     ->rules([ new PhoneNumber ])

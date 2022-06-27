@@ -1,5 +1,5 @@
 <?php
-namespace Tanthammar\LaravelRules\Rules;
+namespace TantHammar\LaravelRules\Rules;
 
 use Brick\PhoneNumber\PhoneNumber as Validator;
 use Brick\PhoneNumber\PhoneNumberParseException;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tanthammar\LaravelRules\Rules;
+namespace TantHammar\LaravelRules\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 use Personnummer\Personnummer as PersonNummerVerifier;

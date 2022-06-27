@@ -1,6 +1,6 @@
 <?php
 
-namespace Tanthammar\LaravelRules\Rules;
+namespace TantHammar\LaravelRules\Rules;
 
 use byrokrat\banking\BankgiroFactory;
 use byrokrat\banking\BankNames;
