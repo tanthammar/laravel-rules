@@ -34,10 +34,6 @@ class OrgNummer implements Rule
      */
     public function message(): string
     {
-        if (app()->getLocale() === 'sv') {
-            return 'Organisationsnumret är ogiltigt';
-        }
-
-        return 'The number must be a valid business ID';
+        return __('rules::messages.org-nr');
     }
 }

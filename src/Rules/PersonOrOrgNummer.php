@@ -25,10 +25,6 @@ class PersonOrOrgNummer implements Rule
      */
     public function message(): string
     {
-        if (app()->getLocale() === 'sv') {
-            return 'Numret är ogiltigt';
-        }
-
-        return 'The number is invalid';
+        return __('rules::messages.person-org-nr');
     }
 }

@@ -3,12 +3,13 @@ namespace TantHammar\LaravelRules\Rules;
 
 use Brick\PhoneNumber\PhoneNumber as Validator;
 use Brick\PhoneNumber\PhoneNumberParseException;
+use Brick\PhoneNumber\PhoneNumberType;
 use Illuminate\Contracts\Validation\Rule;
 
 /**
  * The $value must start with a country code, like 46 for Sweden. "+" is prepended, if missing.
  */
-class PhoneNumber implements Rule
+class FixedLineNumber implements Rule
 {
 
     /**
@@ -25,7 +26,8 @@ class PhoneNumber implements Rule
             if (!str_starts_with($value, '+')) {
                 $value = "+".$value;
             }
-            return Validator::parse((string)$value)->isValidNumber();
+            $number = Validator::parse((string)$value);
+            return $number->isValidNumber() && $number->getNumberType() === PhoneNumberType::FIXED_LINE;
         } catch (PhoneNumberParseException $e) {
             return false;
         }
@@ -33,6 +35,6 @@ class PhoneNumber implements Rule
 
     public function message(): string
     {
-        return __('rules::messages.any-phone');
+        return __('rules::messages.fixed-phone');
     }
 }

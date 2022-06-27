@@ -35,10 +35,6 @@ class BankGiro implements Rule
      */
     public function message(): string
     {
-        if(app()->getLocale() === 'sv') {
-            return 'Du måste ange ett giltigt BankGiro nummer';
-        }
-
-        return 'The number must be a valid Swedish BankGiro';
+        return __('rules::messages.bankgiro');
     }
 }

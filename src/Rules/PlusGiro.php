@@ -35,10 +35,6 @@ class PlusGiro implements Rule
      */
     public function message(): string
     {
-        if (app()->getLocale() === 'sv') {
-            return 'Du måste ange ett giltigt PlusGiro nummer';
-        }
-
-        return 'The number must be a valid Swedish PlusGiro';
+        return __('rules::messages.plusgiro');
     }
 }

@@ -34,10 +34,6 @@ class PersonNummer implements Rule
      */
     public function message(): string
     {
-        if (app()->getLocale() === 'sv') {
-            return 'Du måste ange ett giltigt Personnummer';
-        }
-
-        return 'The number must be a valid Swedish identification number';
+        return __('rules::messages.person-nr');
     }
 }
