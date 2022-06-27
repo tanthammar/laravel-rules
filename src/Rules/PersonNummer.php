@@ -17,6 +17,9 @@ class PersonNummer implements Rule
      */
     public function passes($attribute, $value): bool
     {
+        if(blank($value)) {
+            return false;
+        }
         try {
             return PersonNummerVerifier::valid(Helpers::clean_numbers($value));
         } catch (\Exception $e) {

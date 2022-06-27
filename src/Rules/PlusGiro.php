@@ -18,6 +18,9 @@ class PlusGiro implements Rule
      */
     public function passes($attribute, $value): bool
     {
+        if(blank($value)) {
+            return false;
+        }
         try {
             return (new PlusgiroFactory)->createAccount($value)->getBankName() === BankNames::BANK_PLUSGIRO;
         } catch (Exception $e) {

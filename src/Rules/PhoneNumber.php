@@ -4,8 +4,10 @@ namespace Tanthammar\LaravelRules\Rules;
 use Brick\PhoneNumber\PhoneNumber as Validator;
 use Brick\PhoneNumber\PhoneNumberParseException;
 use Illuminate\Contracts\Validation\Rule;
-use Illuminate\Support\Str;
 
+/**
+ * The $value must start with a country code, like 46 for Sweden. "+" is prepended, if missing.
+ */
 class PhoneNumber implements Rule
 {
 
@@ -16,11 +18,14 @@ class PhoneNumber implements Rule
      */
     public function passes($attribute, $value): bool
     {
+        if(blank($value)) {
+            return false;
+        }
         try {
-            if (!Str::of($value)->startsWith('+')) {
-                $value = Str::of($value)->prepend('+');
+            if (!str_starts_with($value, '+')) {
+                $value = "+".$value;
             }
-            return Validator::parse($value)->isValidNumber();
+            return Validator::parse((string)$value)->isValidNumber();
         } catch (PhoneNumberParseException $e) {
             return false;
         }
