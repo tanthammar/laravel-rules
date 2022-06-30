@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'alpha_spaces' => ":Attribute får bara innehålla bokstäver och mellanslag.",
-    'alpha_dash_spaces' => ':Attribute får endast innehålla bokstäver, siffror, /, -, _ och mellanslag.',
+    'alpha_space' => ":Attribute får bara innehålla bokstäver och mellanslag.",
+    'alpha_dash_space' => ':Attribute får endast innehålla bokstäver, siffror, /, -, _ och mellanslag.',
     'bankgiro' => 'Du måste ange ett giltigt BankGiro nummer',
     'bankkonto' => 'Du måste ange ett giltigt svenskt Bankkonto',
     'fixed-phone' => 'Numret måste vara ett giltigt fast telefonnummer',
