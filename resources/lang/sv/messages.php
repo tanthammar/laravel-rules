@@ -2,6 +2,7 @@
 
 return [
     'alpha_space' => ":Attribute får bara innehålla bokstäver och mellanslag.",
+    'alpha_num_space' => ':Attribute får endast innehålla bokstäver, siffror och mellanslag.',
     'alpha_dash_space' => ':Attribute får endast innehålla bokstäver, siffror, /, -, _ och mellanslag.',
     'bankgiro' => 'Du måste ange ett giltigt BankGiro nummer',
     'bankkonto' => 'Du måste ange ett giltigt svenskt Bankkonto',
@@ -12,4 +13,6 @@ return [
     'person-nr' => 'Du måste ange ett giltigt Personnummer',
     'person-org-nr' => 'Det angivna värdet är inte ett giltigt organisationsnr. eller personnr.',
     'plusgiro' => 'Du måste ange ett giltigt PlusGiro nummer',
+    'latitude' => 'Latitude värdet är felaktigt',
+    'longitude' => 'Longitude värdet är felaktigt',
 ];

@@ -21,11 +21,21 @@ class LaravelRulesServiceProvider extends PackageServiceProvider
     public function bootingPackage(): void
     {
         Validator::extend('alpha_space', static function ($attribute, $value) {
-            return is_string($value) && (preg_match('/^[\pL\s]+$/u', $value) > 0);
+            return is_string($value) && preg_match('/^[\pL\s]+$/u', $value);
+        });
+
+        Validator::extend('alpha_num_space', static function ($attribute, $value) {
+            if (! is_string($value) && ! is_numeric($value)) {
+                return false;
+            }
+            return preg_match('/^[\pL\pM\pN\s]+$/u', $value) > 0;
         });
 
         Validator::extend('alpha_dash_space', static function ($attribute, $value) {
-            return is_string($value) && (preg_match('#^[\\\/\pL\s\pM\pN_-]+$#u', $value) > 0);
+            if (! is_string($value) && ! is_numeric($value)) {
+                return false;
+            }
+            return preg_match('#^[\\\/\pL\s\pM\pN_-]+$#u', $value) > 0;
         });
     }
 
