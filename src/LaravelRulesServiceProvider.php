@@ -35,7 +35,7 @@ class LaravelRulesServiceProvider extends PackageServiceProvider
             if (! is_string($value) && ! is_numeric($value)) {
                 return false;
             }
-            return preg_match('#^[\\\/\pL\s\pM\pN_-]+$#u', $value) > 0;
+            return preg_match('#^[\\\/\pL\s\pM\pN.,_-]+$#u', $value) > 0;
         });
     }
 
