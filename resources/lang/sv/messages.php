@@ -15,4 +15,7 @@ return [
     'plusgiro' => 'Du måste ange ett giltigt PlusGiro nummer',
     'latitude' => 'Latitude värdet är felaktigt',
     'longitude' => 'Longitude värdet är felaktigt',
+    'vat-service-unavailable' => 'Tyvärr svarar inte "VIES EU Vat test service". Det är därför omöjligt att verifiera ditt Moms-nr. Vänligen försök om en stund igen eller kontakta support för manuell hantering.',
+    'vat-invalid' => 'The VAT number i invalid',
+    'vat-name-unknown' => 'Juridiskt namn saknas',
 ];

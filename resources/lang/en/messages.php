@@ -15,4 +15,7 @@ return [
     'plusgiro' => 'The number must be a valid Swedish PlusGiro',
     'latitude' => 'The latitude value is invalid',
     'longitude' => 'The longitude value is invalid',
+    'vat-service-unavailable' => 'Sorry, but the "VIES EU Vat service" is unavailable. Unable to validate your Vat ID. Please try again later or contact support for personal assistance.',
+    'vat-invalid' => 'The VAT number i invalid',
+    'vat-name-unknown' => 'Unknown legal name',
 ];
