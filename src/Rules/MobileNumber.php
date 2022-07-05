@@ -35,6 +35,6 @@ class MobileNumber implements Rule
 
     public function message(): string
     {
-        return __('rules::messages.mobile-phone');
+        return __('laravel-rules::messages.mobile-phone');
     }
 }

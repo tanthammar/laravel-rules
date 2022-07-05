@@ -25,6 +25,6 @@ class PersonOrOrgNummer implements Rule
      */
     public function message(): string
     {
-        return __('rules::messages.person-org-nr');
+        return __('laravel-rules::messages.person-org-nr');
     }
 }

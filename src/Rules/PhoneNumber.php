@@ -33,6 +33,6 @@ class PhoneNumber implements Rule
 
     public function message(): string
     {
-        return __('rules::messages.any-phone');
+        return __('laravel-rules::messages.any-phone');
     }
 }

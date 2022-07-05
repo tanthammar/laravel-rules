@@ -34,6 +34,6 @@ class PersonNummer implements Rule
      */
     public function message(): string
     {
-        return __('rules::messages.person-nr');
+        return __('laravel-rules::messages.person-nr');
     }
 }

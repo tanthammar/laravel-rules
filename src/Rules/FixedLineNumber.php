@@ -35,6 +35,6 @@ class FixedLineNumber implements Rule
 
     public function message(): string
     {
-        return __('rules::messages.fixed-phone');
+        return __('laravel-rules::messages.fixed-phone');
     }
 }

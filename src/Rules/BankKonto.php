@@ -34,6 +34,6 @@ class BankKonto implements Rule
      */
     public function message(): string
     {
-        return __('rules::messages.bankkonto');
+        return __('laravel-rules::messages.bankkonto');
     }
 }

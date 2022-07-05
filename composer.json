@@ -23,6 +23,7 @@
         "intervention/validation": "^3.2",
         "laravel/framework": "^9.0",
         "personnummer/personnummer": "^3.0",
+        "mpociot/vat-calculator": "^3.0",
         "spatie/laravel-package-tools": "^1.9.2"
     },
     "autoload": {

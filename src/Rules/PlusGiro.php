@@ -35,6 +35,6 @@ class PlusGiro implements Rule
      */
     public function message(): string
     {
-        return __('rules::messages.plusgiro');
+        return __('laravel-rules::messages.plusgiro');
     }
 }

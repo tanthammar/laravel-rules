@@ -25,6 +25,6 @@ class Latitude implements Rule
      */
     public function message(): string
     {
-        return __('rules::messages.latitude');
+        return __('laravel-rules::messages.latitude');
     }
 }

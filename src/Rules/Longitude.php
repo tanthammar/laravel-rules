@@ -25,6 +25,6 @@ class Longitude implements Rule
      */
     public function message(): string
     {
-        return __('rules::messages.longitude');
+        return __('laravel-rules::messages.longitude');
     }
 }

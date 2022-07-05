@@ -34,6 +34,6 @@ class OrgNummer implements Rule
      */
     public function message(): string
     {
-        return __('rules::messages.org-nr');
+        return __('laravel-rules::messages.org-nr');
     }
 }

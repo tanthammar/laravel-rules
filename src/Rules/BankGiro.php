@@ -35,6 +35,6 @@ class BankGiro implements Rule
      */
     public function message(): string
     {
-        return __('rules::messages.bankgiro');
+        return __('laravel-rules::messages.bankgiro');
     }
 }
