@@ -4,7 +4,7 @@ namespace TantHammar\LaravelRules\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 use Personnummer\Personnummer as PersonNummerVerifier;
-use TantHammar\LaravelRules\Helpers;
+use TantHammar\LaravelExtras\Helpers;
 
 class PersonNummer implements Rule
 {

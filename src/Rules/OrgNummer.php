@@ -4,7 +4,7 @@ namespace TantHammar\LaravelRules\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 use Intervention\Validation\Rules\Luhn;
-use TantHammar\LaravelRules\Helpers;
+use TantHammar\LaravelExtras\Helpers;
 
 class OrgNummer implements Rule
 {
