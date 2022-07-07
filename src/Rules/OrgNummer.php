@@ -4,7 +4,7 @@ namespace TantHammar\LaravelRules\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 use Intervention\Validation\Rules\Luhn;
-use TantHammar\LaravelExtras\Helpers;
+use TantHammar\LaravelExtras\LaravelExtrasHelpers;
 
 class OrgNummer implements Rule
 {
@@ -21,7 +21,7 @@ class OrgNummer implements Rule
             return false;
         }
         try {
-            return (new Luhn)->passes(attribute: null, value: Helpers::clean_numbers($value));
+            return (new Luhn)->passes(attribute: null, value: LaravelExtrasHelpers::clean_numbers($value));
         } catch (\Exception $e) {
             return false;
         }

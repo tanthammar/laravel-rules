@@ -17,6 +17,26 @@ class RuleHelpers
         }
     }
 
+    /** src https://github.com/driesvints/vat-calculator#get-eu-vat-number-details<br>
+     * uk format: https://github.com/driesvints/vat-calculator#uk-vat-numbers
+     */
+    public static function getVATDetailsFromVatID(string $vatID): object
+    {
+        $empty = new \stdClass([
+            'countryCode' => '',
+            'vatNumber' => '',
+            'requestDate' => '',
+            'valid' => false,
+            'name' => '',
+            'address' => '',
+        ]);
+        try {
+            return VatCalculator::getVATDetails($vatID) ?? $empty;
+        } catch (\Exception) {
+            return $empty;
+        }
+    }
+
     /** returns 'business', 'individual' or 'undefined' */
     public static function check_business_type(string|int $nr): string
     {

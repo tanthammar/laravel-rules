@@ -16,6 +16,6 @@ return [
     'latitude' => 'The latitude value is invalid',
     'longitude' => 'The longitude value is invalid',
     'vat-service-unavailable' => 'Sorry, but the "VIES EU Vat service" is unavailable. Unable to validate your Vat ID. Please try again later or contact support for personal assistance.',
-    'vat-invalid' => 'The VAT number i invalid',
+    'vat-invalid' => 'The :attribute is not a valid VAT ID number.',
     'vat-name-unknown' => 'Unknown legal name',
 ];
