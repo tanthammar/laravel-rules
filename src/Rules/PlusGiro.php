@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Rules;
+namespace TantHammar\LaravelRules\Rules;
 
 use byrokrat\banking\BankNames;
 use byrokrat\banking\Exception;
