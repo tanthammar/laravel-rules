@@ -10,8 +10,8 @@ In this repository I will add validation rules that I use in my SaaS app. I thin
 composer require tanthammar/laravel-rules
 ```
 
-## Rules
-See the src/Rules folder.
+## Rules, Fakers and more
+See src folder
 
 ## Documentation
 There won't be much documentation written, this repository will grow as I add items.
