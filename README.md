@@ -1,5 +1,5 @@
-# My Validation rules for Laravel
-In this repository I will add validation rules that I use in my SaaS app. I think especially Swedish developers will find them handy.
+# Missing validation rules and fakers, for Laravel
+In this repository I will add validators and factory helpers, that I use in my SaaS app. I think especially Swedish developers will find them handy.
 
 ## Requirements
 - PHP 8.1
