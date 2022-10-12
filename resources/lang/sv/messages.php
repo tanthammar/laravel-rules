@@ -18,4 +18,5 @@ return [
     'vat-service-unavailable' => 'Tyvärr svarar inte "VIES EU Vat test service". Det är därför omöjligt att verifiera ditt Moms-nr. Vänligen försök om en stund igen eller kontakta support för manuell hantering.',
     'vat-invalid' => ':Attribute är ej ett giltigt momsregistreringsnummer',
     'vat-name-unknown' => 'Juridiskt namn saknas',
+    'total-file-sizes' => 'Summan av filernas storlek får inte överstiga :kb Kb.',
 ];

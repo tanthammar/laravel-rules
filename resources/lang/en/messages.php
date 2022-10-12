@@ -18,4 +18,5 @@ return [
     'vat-service-unavailable' => 'Sorry, but the "VIES EU Vat service" is unavailable. Unable to validate your Vat ID. Please try again later or contact support for personal assistance.',
     'vat-invalid' => 'The :attribute is not a valid VAT ID number.',
     'vat-name-unknown' => 'Unknown legal name',
+    'total-file-sizes' => 'The sum of all file sizes should not exeed :kb Kb.',
 ];
