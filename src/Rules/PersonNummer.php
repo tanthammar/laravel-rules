@@ -4,7 +4,7 @@ namespace TantHammar\LaravelRules\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 use Personnummer\Personnummer as PersonNummerVerifier;
-use TantHammar\LaravelExtras\LaravelExtrasHelpers;
+use TantHammar\LaravelExtras\CleanNumber;
 
 class PersonNummer implements Rule
 {
@@ -21,7 +21,7 @@ class PersonNummer implements Rule
             return false;
         }
         try {
-            return PersonNummerVerifier::valid(LaravelExtrasHelpers::clean_numbers($value));
+            return PersonNummerVerifier::valid(CleanNumber::make($value));
         } catch (\Exception $e) {
             return false;
         }

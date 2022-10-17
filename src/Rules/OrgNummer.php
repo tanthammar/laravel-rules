@@ -5,7 +5,7 @@ namespace TantHammar\LaravelRules\Rules;
 use Illuminate\Contracts\Validation\Rule;
 use Intervention\Validation\Rules\Luhn;
 use Organisationsnummer\Organisationsnummer;
-use TantHammar\LaravelExtras\LaravelExtrasHelpers;
+use TantHammar\LaravelExtras\CleanNumber;
 
 /** Validates SWEDISH business numbers */
 class OrgNummer implements Rule
@@ -25,7 +25,7 @@ class OrgNummer implements Rule
         return Organisationsnummer::valid($value); //only returns bool (catches errors)
         /*
         try {
-            return (new Luhn)->passes(attribute: null, value: LaravelExtrasHelpers::clean_numbers($value));
+            return (new Luhn)->passes(attribute: null, value: CleanNumber::make($value));
         } catch (\Exception $e) {
             return false;
         }*/
