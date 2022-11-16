@@ -8,6 +8,11 @@ use TantHammar\LaravelRules\Rules\PersonNummer;
 
 class RuleHelpers
 {
+    /**
+     * @param string $vatID
+     * @return string
+     * @deprecated use BusinessNameFromVatID::lookup(string $vatID)
+     */
     public static function getBusinessNameFromVatID(string $vatID): string
     {
         try {
@@ -17,8 +22,10 @@ class RuleHelpers
         }
     }
 
-    /** src https://github.com/driesvints/vat-calculator#get-eu-vat-number-details<br>
-     * uk format: https://github.com/driesvints/vat-calculator#uk-vat-numbers
+    /**
+     * @param string $vatID
+     * @return object
+     * @deprecated use VatDetailsFromVatID::lookup(string $vatID)
      */
     public static function getVATDetailsFromVatID(string $vatID): object
     {
@@ -37,7 +44,11 @@ class RuleHelpers
         }
     }
 
-    /** returns 'business', 'individual' or 'undefined' */
+    /**
+     * @param string|int $nr
+     * @return string
+     * @deprecated use BusinessTypeFromNr::make(string|int $nr)
+     */
     public static function check_business_type(string|int $nr): string
     {
         if (filled($nr)) {
