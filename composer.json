@@ -20,7 +20,6 @@
         "php": "^8.1",
         "brick/phonenumber": "^0.4.0",
         "byrokrat/banking": "^2.2",
-        "intervention/validation": "^3.2",
         "laravel/framework": "^9.0",
         "personnummer/personnummer": "^3.0.4",
         "organisationsnummer/organisationsnummer": "^1.0.0",

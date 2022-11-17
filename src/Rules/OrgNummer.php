@@ -3,9 +3,8 @@
 namespace TantHammar\LaravelRules\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
-use Intervention\Validation\Rules\Luhn;
 use Organisationsnummer\Organisationsnummer;
-use TantHammar\LaravelExtras\CleanNumber;
+use TantHammar\LaravelExtras\NoWhiteSpace;
 
 /** Validates SWEDISH business numbers */
 class OrgNummer implements Rule
@@ -22,13 +21,7 @@ class OrgNummer implements Rule
         if(blank($value)) {
             return false;
         }
-        return Organisationsnummer::valid($value); //only returns bool (catches errors)
-        /*
-        try {
-            return (new Luhn)->passes(attribute: null, value: CleanNumber::make($value));
-        } catch (\Exception $e) {
-            return false;
-        }*/
+        return Organisationsnummer::valid(NoWhiteSpace::make($value)); //only returns bool (catches errors)
     }
 
     /**
