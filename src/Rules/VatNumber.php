@@ -9,6 +9,7 @@ use Mpociot\VatCalculator\Facades\VatCalculator;
 class VatNumber implements Rule
 {
     protected bool $serviceUnavailable = false;
+
     /**
      * Determine if the validation rule passes.
      *
@@ -18,13 +19,14 @@ class VatNumber implements Rule
      */
     public function passes($attribute, $value): bool
     {
-        if(blank($value)) {
+        if (blank($value)) {
             return false;
         }
         try {
             return VatCalculator::isValidVATNumber($value);
         } catch (VATCheckUnavailableException) {
             $this->serviceUnavailable = true;
+
             return false;
         }
     }

@@ -7,7 +7,6 @@ namespace TantHammar\LaravelRules\Factories;
  */
 class FakePhoneNumber extends \Faker\Provider\PhoneNumber
 {
-
     protected static $localFormats = [
         '08-### ### ##',
         '0%#-### ## ##',
@@ -38,7 +37,6 @@ class FakePhoneNumber extends \Faker\Provider\PhoneNumber
         '+46(0)%######',
         '+46%######',
     ];
-
 
     public static function make(bool $international = true): string
     {

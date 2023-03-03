@@ -10,7 +10,7 @@ class BusinessNameFromVatID
     {
         $unknown = trans('laravel-rules::msg.vat-name-unknown');
 
-        if(!$vatID) {
+        if (! $vatID) {
             return $unknown;
         }
 
@@ -19,6 +19,5 @@ class BusinessNameFromVatID
         } catch (\Exception) {
             return $unknown;
         }
-
     }
 }

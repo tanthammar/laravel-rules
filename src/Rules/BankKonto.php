@@ -17,7 +17,7 @@ class BankKonto implements Rule
      */
     public function passes($attribute, $value): bool
     {
-        if(blank($value)) {
+        if (blank($value)) {
             return false;
         }
         try {

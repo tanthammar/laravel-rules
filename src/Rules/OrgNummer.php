@@ -12,15 +12,16 @@ class OrgNummer implements Rule
     /**
      * Determine if the validation rule passes.
      *
-     * @param string $attribute
-     * @param mixed $value
+     * @param  string  $attribute
+     * @param  mixed  $value
      * @return bool
      */
     public function passes($attribute, $value): bool
     {
-        if(blank($value)) {
+        if (blank($value)) {
             return false;
         }
+
         return Organisationsnummer::valid(NoWhiteSpace::make($value)); //only returns bool (catches errors)
     }
 

@@ -6,6 +6,7 @@ use Mpociot\VatCalculator\Facades\VatCalculator;
 
 /**
  * eu format or uk format:<br>
+ *
  * @see https://github.com/driesvints/vat-calculator#get-eu-vat-number-details
  * @see https://github.com/driesvints/vat-calculator#uk-vat-numbers
  */
@@ -22,7 +23,7 @@ class VatDetailsFromVatID
             'address' => '',
         ]);
 
-        if(!$vatID) {
+        if (! $vatID) {
             return $empty;
         }
 

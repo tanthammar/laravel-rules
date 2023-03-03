@@ -8,13 +8,13 @@ class Latitude implements Rule
 {
     public function passes($attribute, $value): bool
     {
-        if(blank($value)) {
+        if (blank($value)) {
             return false;
         }
-        if(is_string($value))
-        {
+        if (is_string($value)) {
             $value = (float) $value;
         }
+
         return $value >= -90 && $value <= 90;
     }
 

@@ -12,13 +12,14 @@ class BusinessTypeFromNr
     public static function make(string|int $nr): string
     {
         if (filled($nr)) {
-            if ((new PersonNummer())->passes(null, $nr)) {
+            if ((new PersonNummer)->passes(null, $nr)) {
                 return 'individual';
             }
-            if ((new OrgNummer())->passes(null, $nr)) {
+            if ((new OrgNummer)->passes(null, $nr)) {
                 return 'business';
             }
         }
+
         return 'undefined';
     }
 }

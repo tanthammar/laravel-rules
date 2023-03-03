@@ -17,7 +17,7 @@
         }
     ],
     "require": {
-        "php": "^8.1",
+        "php": "^8.1|^8.2",
         "brick/phonenumber": "^0.4.0",
         "byrokrat/banking": "^2.2",
         "laravel/framework": "^9.0",

@@ -1,4 +1,5 @@
 <?php
+
 namespace TantHammar\LaravelRules\Rules;
 
 use Brick\PhoneNumber\PhoneNumber as Validator;
@@ -11,22 +12,22 @@ use Illuminate\Contracts\Validation\Rule;
  */
 class FixedLineNumber implements Rule
 {
-
     /**
-     * @param string $attribute
-     * @param mixed $value
+     * @param  string  $attribute
+     * @param  mixed  $value
      * @return bool
      */
     public function passes($attribute, $value): bool
     {
-        if(blank($value)) {
+        if (blank($value)) {
             return false;
         }
         try {
-            if (!str_starts_with($value, '+')) {
-                $value = "+".$value;
+            if (! str_starts_with($value, '+')) {
+                $value = '+'.$value;
             }
-            $number = Validator::parse((string)$value);
+            $number = Validator::parse((string) $value);
+
             return $number->isValidNumber() && $number->getNumberType() === PhoneNumberType::FIXED_LINE;
         } catch (PhoneNumberParseException $e) {
             return false;

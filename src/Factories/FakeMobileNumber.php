@@ -4,12 +4,12 @@ namespace TantHammar\LaravelRules\Factories;
 
 /**
  * Swedish mobile number formats, while waiting for PR
+ *
  * @see https://github.com/FakerPHP/Faker/pull/491
  * @see https://www.pts.se/sv/bransch/telefoni/nummer-och-adressering/telefoninummerplanen/telefonnummers-struktur/
  */
 class FakeMobileNumber extends \Faker\Provider\PhoneNumber
 {
-
     /**
      * @var array Swedish mobile number formats
      */

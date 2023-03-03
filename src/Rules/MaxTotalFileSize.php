@@ -15,21 +15,23 @@ class MaxTotalFileSize implements Rule
 {
     public function __construct(
         public int $maxKb = 5000
-    ) {}
+    ) {
+    }
 
     public function passes($attribute, $value): bool
     {
-        if(!is_array($value)) {
+        if (! is_array($value)) {
             return false;
         }
 
-        if(blank($value)) {
+        if (blank($value)) {
             return true;
         }
 
         $total_size = array_reduce($value, static function ($sum, $file) {
             // each item is UploadedFile Object
             $sum += Storage::size((Storage::path($file)));
+
             return $sum;
         });
 
