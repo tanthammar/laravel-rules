@@ -42,4 +42,12 @@ class MaxTotalFileSize implements Rule
     {
         return __('laravel-rules::messages.total-file-sizes', ['kb' => $this->maxKb]);
     }
+
+    //Laravel 10
+    public function validate(string $attribute, mixed $value, \Closure $fail): void
+    {
+        if (! $this->passes($attribute, $value)) {
+            $fail($this->message());
+        }
+    }
 }

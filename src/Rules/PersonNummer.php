@@ -36,4 +36,12 @@ class PersonNummer implements Rule
     {
         return __('laravel-rules::messages.person-nr');
     }
+
+    //Laravel 10
+    public function validate(string $attribute, mixed $value, \Closure $fail): void
+    {
+        if (! $this->passes($attribute, $value)) {
+            $fail($this->message());
+        }
+    }
 }

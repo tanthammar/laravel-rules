@@ -40,4 +40,12 @@ class VatNumber implements Rule
     {
         return $this->serviceUnavailable ? trans('laravel-rules::messages.vat-service-unavailable') : trans('laravel-rules::messages.vat-invalid');
     }
+
+    //Laravel 10
+    public function validate(string $attribute, mixed $value, \Closure $fail): void
+    {
+        if (! $this->passes($attribute, $value)) {
+            $fail($this->message());
+        }
+    }
 }

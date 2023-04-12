@@ -27,4 +27,12 @@ class PersonOrOrgNummer implements Rule
     {
         return __('laravel-rules::messages.person-org-nr');
     }
+
+    //Laravel 10
+    public function validate(string $attribute, mixed $value, \Closure $fail): void
+    {
+        if (! $this->passes($attribute, $value)) {
+            $fail($this->message());
+        }
+    }
 }

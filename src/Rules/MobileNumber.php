@@ -38,4 +38,12 @@ class MobileNumber implements Rule
     {
         return __('laravel-rules::messages.mobile-phone');
     }
+
+    //Laravel 10
+    public function validate(string $attribute, mixed $value, \Closure $fail): void
+    {
+        if (! $this->passes($attribute, $value)) {
+            $fail($this->message());
+        }
+    }
 }
