@@ -36,6 +36,14 @@ class LaravelRulesServiceProvider extends PackageServiceProvider
             return preg_match('#^[\\\/\pL\s\pM\pN.,_-]+$#u', $value) > 0;
         });
 
+        Validator::extend('alpha_dash_space_and', static function ($attribute, $value) {
+            if (! is_string($value) && ! is_numeric($value)) {
+                return false;
+            }
+
+            return preg_match('#^[\\\/\pL\s\pM\pN.&,_-]+$#u', $value) > 0;
+        });
+
         Validator::extend('alpha_dash_space_at', static function ($attribute, $value) {
             if (! is_string($value) && ! is_numeric($value)) {
                 return false;
