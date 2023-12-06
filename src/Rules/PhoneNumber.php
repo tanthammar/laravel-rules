@@ -14,16 +14,16 @@ class PhoneNumber implements Rule
     /**
      * @param  string  $attribute
      * @param  mixed  $value
-     * @return bool
      */
     public function passes($attribute, $value): bool
     {
         if (blank($value)) {
             return false;
         }
+
         try {
             if (! str_starts_with($value, '+')) {
-                $value = '+'.$value;
+                $value = '+' . $value;
             }
 
             return Validator::parse((string) $value)->isValidNumber();

@@ -5,6 +5,7 @@ namespace TantHammar\LaravelRules\Factories;
 /**
  * Swedish mobile number formats, while waiting for PR
  *
+ * @see https://fakerphp.github.io/locales/sv_SE/#fakerprovidersv_semobilenumber
  * @see https://github.com/FakerPHP/Faker/pull/491
  * @see https://www.pts.se/sv/bransch/telefoni/nummer-och-adressering/telefoninummerplanen/telefonnummers-struktur/
  */
@@ -37,5 +38,11 @@ class FakeMobileNumber extends \Faker\Provider\PhoneNumber
         $val = preg_replace_callback('/{{\s?(\w+|[\w\\\]+->\w+?)\s?}}/u', $callback, $format);
 
         return self::numerify($val);
+    }
+
+    /* Publishable GDPR Safe Swedish mobile number series */
+    public static function gdprSafe(): string
+    {
+        return '070-1740' . fake()->numberBetween(605, 699);
     }
 }

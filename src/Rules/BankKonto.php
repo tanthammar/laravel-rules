@@ -13,13 +13,13 @@ class BankKonto implements Rule
      *
      * @param  string  $attribute
      * @param  mixed  $value
-     * @return bool
      */
     public function passes($attribute, $value): bool
     {
         if (blank($value)) {
             return false;
         }
+
         try {
             return filled((new AccountFactory)->createAccount($value));
         } catch (Exception $e) {
@@ -29,8 +29,6 @@ class BankKonto implements Rule
 
     /**
      * Get the validation error message.
-     *
-     * @return string
      */
     public function message(): string
     {

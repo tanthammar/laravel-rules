@@ -14,13 +14,13 @@ class PlusGiro implements Rule
      *
      * @param  string  $attribute
      * @param  mixed  $value
-     * @return bool
      */
     public function passes($attribute, $value): bool
     {
         if (blank($value)) {
             return false;
         }
+
         try {
             return (new PlusgiroFactory)->createAccount($value)->getBankName() === BankNames::BANK_PLUSGIRO;
         } catch (Exception $e) {
@@ -30,8 +30,6 @@ class PlusGiro implements Rule
 
     /**
      * Get the validation error message.
-     *
-     * @return string
      */
     public function message(): string
     {

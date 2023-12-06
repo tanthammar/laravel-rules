@@ -9,7 +9,7 @@ use TantHammar\LaravelRules\Rules\PersonNummer;
 class BusinessTypeFromNr
 {
     /** returns 'business', 'individual' or 'undefined' */
-    public static function make(string|int $nr): string
+    public static function make(string | int $nr): string
     {
         if (filled($nr)) {
             if ((new PersonNummer)->passes(null, $nr)) {

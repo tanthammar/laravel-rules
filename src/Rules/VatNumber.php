@@ -15,13 +15,13 @@ class VatNumber implements Rule
      *
      * @param  string  $attribute
      * @param  mixed  $value
-     * @return bool
      */
     public function passes($attribute, $value): bool
     {
         if (blank($value)) {
             return false;
         }
+
         try {
             return VatCalculator::isValidVATNumber($value);
         } catch (VATCheckUnavailableException) {
@@ -33,8 +33,6 @@ class VatNumber implements Rule
 
     /**
      * Get the validation error message.
-     *
-     * @return string
      */
     public function message(): string
     {

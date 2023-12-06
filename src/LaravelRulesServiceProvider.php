@@ -59,7 +59,7 @@ class LaravelRulesServiceProvider extends PackageServiceProvider
     public function bootTranslations()
     {
         $name = $this->package->name;
-        $langPath = resource_path('lang/'.'vendor/'.$name);
+        $langPath = resource_path('lang/' . 'vendor/' . $name);
 
         $this->publishes([
             $this->package->basePath('/../resources/lang') => $langPath,

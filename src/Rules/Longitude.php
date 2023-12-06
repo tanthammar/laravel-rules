@@ -20,8 +20,6 @@ class Longitude implements Rule
 
     /**
      * Get the validation error message.
-     *
-     * @return string
      */
     public function message(): string
     {

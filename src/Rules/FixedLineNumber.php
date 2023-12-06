@@ -15,16 +15,16 @@ class FixedLineNumber implements Rule
     /**
      * @param  string  $attribute
      * @param  mixed  $value
-     * @return bool
      */
     public function passes($attribute, $value): bool
     {
         if (blank($value)) {
             return false;
         }
+
         try {
             if (! str_starts_with($value, '+')) {
-                $value = '+'.$value;
+                $value = '+' . $value;
             }
             $number = Validator::parse((string) $value);
 
