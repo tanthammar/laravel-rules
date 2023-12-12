@@ -16,9 +16,11 @@ class LaravelRulesServiceProvider extends PackageServiceProvider
 
     public function bootingPackage(): void
     {
+        $this->bootTranslations();
+
         Validator::extend('alpha_space', static function ($attribute, $value) {
             return is_string($value) && preg_match('/^[\pL\s]+$/u', $value);
-        });
+        }, __('laravel-rules::messages.alpha_space'));
 
         Validator::extend('alpha_num_space', static function ($attribute, $value) {
             if (! is_string($value) && ! is_numeric($value)) {
@@ -26,7 +28,7 @@ class LaravelRulesServiceProvider extends PackageServiceProvider
             }
 
             return preg_match('/^[\pL\pM\pN\s]+$/u', $value) > 0;
-        });
+        }, __('laravel-rules::messages.alpha_num_space'));
 
         Validator::extend('alpha_dash_space', static function ($attribute, $value) {
             if (! is_string($value) && ! is_numeric($value)) {
@@ -34,7 +36,7 @@ class LaravelRulesServiceProvider extends PackageServiceProvider
             }
 
             return preg_match('#^[\\\/\pL\s\pM\pN.,_-]+$#u', $value) > 0;
-        });
+        }, __('laravel-rules::messages.alpha_dash_space'));
 
         Validator::extend('alpha_dash_space_and', static function ($attribute, $value) {
             if (! is_string($value) && ! is_numeric($value)) {
@@ -42,7 +44,7 @@ class LaravelRulesServiceProvider extends PackageServiceProvider
             }
 
             return preg_match('#^[\\\/\pL\s\pM\pN.&,_-]+$#u', $value) > 0;
-        });
+        }, __('laravel-rules::messages.alpha_dash_space_and'));
 
         Validator::extend('alpha_dash_space_at', static function ($attribute, $value) {
             if (! is_string($value) && ! is_numeric($value)) {
@@ -50,9 +52,7 @@ class LaravelRulesServiceProvider extends PackageServiceProvider
             }
 
             return preg_match('#^[\\\/\pL\s\pM\pN.@,_-]+$#u', $value) > 0;
-        });
-
-        $this->bootTranslations();
+        }, __('laravel-rules::messages.alpha_dash_space_at'));
     }
 
     //override spatie package shortname() that strips out 'laravel'
