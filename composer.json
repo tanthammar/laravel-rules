@@ -17,10 +17,10 @@
         }
     ],
     "require": {
-        "php": "^8.1|^8.2",
+        "php": "^8.1|^8.2|^8.3",
         "brick/phonenumber": "^0.6.0",
         "byrokrat/banking": "^2.2",
-        "laravel/framework": "^9.0|^10.0",
+        "laravel/framework": "^9.0|^10.0|^11.0",
         "personnummer/personnummer": "^3.0.4",
         "organisationsnummer/organisationsnummer": "^1.0.0",
         "mpociot/vat-calculator": "^3.0",
