@@ -14,9 +14,9 @@ class RuleHelpers
     public static function getBusinessNameFromVatID(string $vatID): string
     {
         try {
-            return VatCalculator::getVATDetails($vatID)?->name ?? trans('laravel-rules::msg.vat-name-unknown');
+            return VatCalculator::getVATDetails($vatID)?->name ?? trans('laravel-rules::messages.vat-name-unknown');
         } catch (\Exception) {
-            return trans('laravel-rules::msg.vat-name-unknown');
+            return trans('laravel-rules::messages.vat-name-unknown');
         }
     }
 

@@ -8,7 +8,7 @@ class BusinessNameFromVatID
 {
     public static function lookup(string $vatID): string
     {
-        $unknown = trans('laravel-rules::msg.vat-name-unknown');
+        $unknown = trans('laravel-rules::messages.vat-name-unknown');
 
         if (! $vatID) {
             return $unknown;
