@@ -2,6 +2,9 @@
 
 namespace TantHammar\LaravelRules\Services;
 
+use TantHammar\LaravelRules\Enums\BusinessNameLookupError;
+use TantHammar\LaravelRules\Rules\VatNumberFormat;
+
 /**
  * eu format or uk format:<br>
  *
@@ -22,6 +25,11 @@ class VatDetailsFromVatID
         ]);
 
         if (! $vatID) {
+            return $empty;
+        }
+
+        //do simple validation before calling external api
+        if (! (new VatNumberFormat)->passes(null, $vatID)) {
             return $empty;
         }
 
