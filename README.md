@@ -171,12 +171,13 @@ $plusgiro = FakePlusgiro::make();
 ## Services
 
 ### VAT Information Lookup
+
+#### Get Business Name Only
 ```php
 use TantHammar\LaravelRules\Services\BusinessNameFromVatID;
-use TantHammar\LaravelRules\Services\VatDetailsFromVatID;
 use TantHammar\LaravelRules\Enums\BusinessNameLookupError;
 
-// Get business details from VAT ID
+// Get business name from VAT ID
 $result = BusinessNameFromVatID::lookup('SE556556567801');
 
 if ($result instanceof BusinessNameLookupError) {
@@ -186,14 +187,31 @@ if ($result instanceof BusinessNameLookupError) {
         BusinessNameLookupError::ServiceUnavailable => 'VAT service temporarily unavailable',
     };
 } else {
-    // Success - $result is the VAT details object
-    $businessName = $result->name;
-    $address = $result->address;
-    $vatNumber = $result->vatNumber;
+    // Success - $result is the business name string
+    $businessName = $result;
 }
+```
 
-// Get full VAT details
+#### Get Full VAT Details Object
+```php
+use TantHammar\LaravelRules\Services\VatDetailsFromVatID;
+
+// Get full VAT details object
 $details = VatDetailsFromVatID::lookup('SE556556567801');
+
+// Check if lookup was successful
+if ($details->valid) {
+    // Success - access object properties
+    $countryCode = $details->countryCode;
+    $vatNumber = $details->vatNumber;
+    $requestDate = $details->requestDate;
+    $businessName = $details->name;
+    $businessAddress = $details->address;
+} else {
+    // Failed - returns empty object with valid = false
+    // This happens when VAT ID is invalid or service is unavailable
+    $errorMessage = 'VAT ID not found or service unavailable';
+}
 ```
 
 ### Business Type Detection
