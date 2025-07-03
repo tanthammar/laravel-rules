@@ -20,7 +20,7 @@ class BusinessNameFromVatID
 
             $object = $calculator->getVATDetails($vatID);
 
-            return is_object($object) ? $object : BusinessNameLookupError::Unknown;
+            return is_object($object) ? $object->name : BusinessNameLookupError::Unknown;
 
         } catch (VATCheckUnavailableException $e) {
             //if Country != GB, less verbose messages are returned.
