@@ -4,15 +4,14 @@ namespace TantHammar\LaravelRules\Services;
 
 use Mpociot\VatCalculator\Exceptions\VATCheckUnavailableException;
 use Mpociot\VatCalculator\VatCalculator;
+use TantHammar\LaravelRules\Enums\BusinessNameLookupError;
 
 class BusinessNameFromVatID
 {
-    public static function lookup(string $vatID): string
+    public static function lookup(string $vatID): object
     {
-        $unknown = trans('laravel-rules::messages.vat-name-unknown');
-
         if (blank($vatID)) {
-            return $unknown;
+            return BusinessNameLookupError::Unknown;
         }
 
         try {
@@ -21,13 +20,11 @@ class BusinessNameFromVatID
 
             $object = $calculator->getVATDetails($vatID);
 
-            return is_object($object) ? $object->name : $unknown;
+            return is_object($object) ? $object : BusinessNameLookupError::Unknown;
 
         } catch (VATCheckUnavailableException $e) {
             //if Country != GB, less verbose messages are returned.
-            return ($message = $e->getMessage()) === "MS_UNAVAILABLE"
-                ? trans('laravel-rules::messages.vies-eu-unavailable')
-                : $message;
+            return BusinessNameLookupError::ServiceUnavailable;
         }
     }
 }

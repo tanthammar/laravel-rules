@@ -174,9 +174,23 @@ $plusgiro = FakePlusgiro::make();
 ```php
 use TantHammar\LaravelRules\Services\BusinessNameFromVatID;
 use TantHammar\LaravelRules\Services\VatDetailsFromVatID;
+use TantHammar\LaravelRules\Enums\BusinessNameLookupError;
 
-// Get business name from VAT ID
-$businessName = BusinessNameFromVatID::lookup('SE556556567801');
+// Get business details from VAT ID
+$result = BusinessNameFromVatID::lookup('SE556556567801');
+
+if ($result instanceof BusinessNameLookupError) {
+    // Handle error cases
+    match ($result) {
+        BusinessNameLookupError::Unknown => 'VAT ID not found',
+        BusinessNameLookupError::ServiceUnavailable => 'VAT service temporarily unavailable',
+    };
+} else {
+    // Success - $result is the VAT details object
+    $businessName = $result->name;
+    $address = $result->address;
+    $vatNumber = $result->vatNumber;
+}
 
 // Get full VAT details
 $details = VatDetailsFromVatID::lookup('SE556556567801');
