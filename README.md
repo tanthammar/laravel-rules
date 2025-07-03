@@ -185,7 +185,11 @@ if ($result instanceof BusinessNameLookupError) {
     match ($result) {
         BusinessNameLookupError::Unknown => 'VAT ID not found',
         BusinessNameLookupError::ServiceUnavailable => 'VAT service temporarily unavailable',
+        BusinessNameLookupError::Invalid => 'Invalid VAT ID format',
     };
+    
+    // Or use the built-in label method
+    $errorMessage = $result->label();
 } else {
     // Success - $result is the business name string
     $businessName = $result;

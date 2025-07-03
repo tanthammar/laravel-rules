@@ -5,6 +5,7 @@ namespace TantHammar\LaravelRules\Services;
 use Mpociot\VatCalculator\Exceptions\VATCheckUnavailableException;
 use Mpociot\VatCalculator\VatCalculator;
 use TantHammar\LaravelRules\Enums\BusinessNameLookupError;
+use TantHammar\LaravelRules\Rules\VatNumberFormat;
 
 class BusinessNameFromVatID
 {
@@ -15,6 +16,12 @@ class BusinessNameFromVatID
         }
 
         try {
+
+            //do simple validation before calling external api
+            if (! (new VatNumberFormat)->passes(null, $vatID)) {
+                return BusinessNameLookupError::Invalid;
+            }
+
             // Do not use Facade. Configure VatCalculator to throw an error when country != GB, else only bool false is returned
             $calculator = new VatCalculator(['forward_soap_faults' => true]);
 
