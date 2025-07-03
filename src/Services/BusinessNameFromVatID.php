@@ -26,7 +26,7 @@ class BusinessNameFromVatID
         } catch (VATCheckUnavailableException $e) {
             //if Country != GB, less verbose messages are returned.
             return ($message = $e->getMessage()) === "MS_UNAVAILABLE"
-                ? "VIES EU Vat service api is unavailable. Please try again later."
+                ? trans('laravel-rules::messages.vies-eu-unavailable')
                 : $message;
         }
     }
