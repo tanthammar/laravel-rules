@@ -2,8 +2,6 @@
 
 namespace TantHammar\LaravelRules\Services;
 
-use Mpociot\VatCalculator\Facades\VatCalculator;
-
 /**
  * eu format or uk format:<br>
  *
@@ -27,8 +25,11 @@ class VatDetailsFromVatID
             return $empty;
         }
 
+        // Do not use Facade. Configure VatCalculator to throw an error when country != GB, else only bool false is returned
+        $calculator = new \Mpociot\VatCalculator\VatCalculator(['forward_soap_faults' => true]);
         try {
-            return VatCalculator::getVATDetails($vatID) ?? $empty;
+            $object = $calculator->getVATDetails($vatID);
+            return  is_object($object) ? $object : $empty;
         } catch (\Exception) {
             return $empty;
         }

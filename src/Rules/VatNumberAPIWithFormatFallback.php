@@ -4,13 +4,12 @@ namespace TantHammar\LaravelRules\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 use Mpociot\VatCalculator\Exceptions\VATCheckUnavailableException;
-use Mpociot\VatCalculator\Facades\VatCalculator;
 
 /**
- * WARNING
- * @deprecated use VatNumberApi, VatNumberAPIWithFormatFallback or VatNumberFormat
+ * This calls an VIES api falls back to number format check if service is unavailable
+ * https://ec.europa.eu/taxation_customs/vies/#/self-monitoring
  */
-class VatNumber implements Rule
+class VatNumberAPIWithFormatFallback implements Rule
 {
     protected bool $serviceUnavailable = false;
 
@@ -26,13 +25,19 @@ class VatNumber implements Rule
             return false;
         }
 
-        try {
-            return VatCalculator::isValidVATNumber($value);
-        } catch (VATCheckUnavailableException) {
-            $this->serviceUnavailable = true;
+        // Do not use Facade. Configure VatCalculator to throw an error when country != GB, else only bool false is returned
+        $calculator = new \Mpociot\VatCalculator\VatCalculator(['forward_soap_faults' => true]);
 
-            return false;
+        try {
+            //This check validates via external api, trows error if service is unavailable
+            return $calculator->isValidVATNumber($value);
+
+        } catch (VATCheckUnavailableException) {
+
+            //use fallback if service is unavailable, this only checks the format
+            return $calculator->isValidVatNumberFormat($value);
         }
+
     }
 
     /**
@@ -40,7 +45,7 @@ class VatNumber implements Rule
      */
     public function message(): string
     {
-        return $this->serviceUnavailable ? trans('laravel-rules::messages.vat-service-unavailable') : trans('laravel-rules::messages.vat-invalid');
+        return trans('laravel-rules::messages.vat-invalid');
     }
 
     //Laravel 10
