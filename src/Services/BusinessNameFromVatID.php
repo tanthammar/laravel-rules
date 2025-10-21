@@ -9,7 +9,7 @@ use TantHammar\LaravelRules\Rules\VatNumberFormat;
 
 class BusinessNameFromVatID
 {
-    public static function lookup(string $vatID): object
+    public static function lookup(string $vatID): string | object
     {
         if (blank($vatID)) {
             return BusinessNameLookupError::Unknown;
