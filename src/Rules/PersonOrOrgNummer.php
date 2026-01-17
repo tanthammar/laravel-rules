@@ -2,6 +2,7 @@
 
 namespace TantHammar\LaravelRules\Rules;
 
+use App\Rules\FinnishBusinessId;
 use Illuminate\Contracts\Validation\Rule;
 
 class PersonOrOrgNummer implements Rule
@@ -14,7 +15,10 @@ class PersonOrOrgNummer implements Rule
      */
     public function passes($attribute, $value): bool
     {
-        return (new OrgNummer)->passes(null, $value) || (new PersonNummer)->passes(null, $value);
+        return
+            (new OrgNummer)->passes(null, $value) ||
+            (new PersonNummer)->passes(null, $value) ||
+            (new FinnishBusinessId)->passes(null, $value);
     }
 
     /**
