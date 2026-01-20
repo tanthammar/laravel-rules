@@ -2,7 +2,7 @@
 
 namespace TantHammar\LaravelRules\Rules;
 
-use App\Rules\FinnishBusinessId;
+use TantHammar\LaravelRules\Rules\FinnishBusinessId;
 use Illuminate\Contracts\Validation\Rule;
 
 class PersonOrOrgNummer implements Rule

@@ -2,7 +2,7 @@
 
 namespace TantHammar\LaravelRules\Helpers;
 
-use App\Rules\FinnishBusinessId;
+use TantHammar\LaravelRules\Rules\FinnishBusinessId;
 use TantHammar\LaravelRules\Rules\OrgNummer;
 use TantHammar\LaravelRules\Rules\PersonNummer;
 
