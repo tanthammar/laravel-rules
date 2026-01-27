@@ -9,7 +9,7 @@ use Illuminate\Contracts\Validation\Rule;
  * Validates Spanish tax identification numbers:
  * - CIF: Company ID (Letter + 7 digits + control) Example: B82683907
  * - NIF/DNI: Spanish resident personal ID (8 digits + letter) Example: 12345678Z
- * - NIE: Foreigner ID (X/Y/Z + 7 digits + letter) Example: X1234567L
+ * - NIE: Foreigner or Non-Resident Entity ID (X/Y/Z + 7 digits + letter) Example: X1234567L
  *
  * Accepts optional ES prefix for VAT format (e.g., ESB82683907)
  */
