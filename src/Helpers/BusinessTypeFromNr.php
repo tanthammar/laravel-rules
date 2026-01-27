@@ -3,6 +3,7 @@
 namespace TantHammar\LaravelRules\Helpers;
 
 use TantHammar\LaravelRules\Rules\FinnishBusinessId;
+use TantHammar\LaravelRules\Rules\SpanishBusinessId;
 use TantHammar\LaravelRules\Rules\OrgNummer;
 use TantHammar\LaravelRules\Rules\PersonNummer;
 
@@ -18,7 +19,8 @@ class BusinessTypeFromNr
             }
             if (
                 (new OrgNummer)->passes(null, $nr) ||
-                (new FinnishBusinessId)->passes(null, $nr)
+                (new FinnishBusinessId)->passes(null, $nr) ||
+                (new SpanishBusinessId)->passes(null, $nr)
             ) {
                 return 'business';
             }

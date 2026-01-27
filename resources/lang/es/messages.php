@@ -1,0 +1,27 @@
+<?php
+
+return [
+    'alpha_space' => 'El campo :attribute solo puede contener letras y espacios.',
+    'alpha_num_space' => 'El campo :attribute solo puede contener letras, números y espacios.',
+    'alpha_dash_space' => 'El campo :attribute solo puede contener letras, números, los caracteres: / , . - _ y espacios.',
+    'alpha_dash_space_and' => 'El campo :attribute solo puede contener letras, números, los caracteres: & / , . - _ y espacios.',
+    'alpha_dash_space_at' => 'El campo :attribute solo puede contener letras, números, los caracteres: @ . , _ - sin espacios.',
+    'bankgiro' => 'El número debe ser un BankGiro sueco válido',
+    'bankkonto' => 'El número debe ser una cuenta bancaria sueca válida',
+    'fixed-phone' => 'El número debe ser un número de teléfono fijo válido',
+    'mobile-phone' => 'El número debe ser un número de móvil válido',
+    'any-phone' => 'El número debe ser un número de teléfono válido',
+    'org-nr' => 'El identificador ingresado debe ser un número de empresa válido',
+    'person-nr' => 'El identificador ingresado debe ser un número de identificación sueco válido',
+    'person-org-nr' => 'El identificador ingresado no es válido',
+    'plusgiro' => 'El número debe ser un PlusGiro sueco válido',
+    'latitude' => 'El valor de latitud no es válido',
+    'longitude' => 'El valor de longitud no es válido',
+    'vat-service-unavailable' => 'Lo sentimos, el servicio "VIES EU Vat" no está disponible. No es posible validar su número de IVA. Por favor, inténtelo más tarde o contacte con soporte para asistencia personal.',
+    'vies-eu-unavailable' => 'El servicio VIES EU Vat no está disponible. Por favor, inténtelo más tarde.',
+    'vat-invalid' => 'El campo :attribute no es un número de IVA válido.',
+    'vat-name-unknown' => 'Nombre legal desconocido',
+    'total-file-sizes' => 'La suma de los tamaños de archivo no debe superar :kb Kb.',
+    'finnish-business-id' => 'El campo :attribute debe ser un número de empresa finlandés válido (Y-tunnus).',
+    'spanish-business-id' => 'El campo :attribute debe ser un NIF/CIF español válido.',
+];

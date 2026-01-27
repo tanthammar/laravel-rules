@@ -22,4 +22,6 @@ return [
     'vat-invalid' => 'The :attribute is not a valid VAT ID number.',
     'vat-name-unknown' => 'Unknown legal name',
     'total-file-sizes' => 'The sum of all file sizes should not exeed :kb Kb.',
+    'finnish-business-id' => 'The :attribute must be a valid Finnish Business ID (Y-tunnus).',
+    'spanish-business-id' => 'The :attribute must be a valid Spanish Business ID (NIF/CIF).',
 ];

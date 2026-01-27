@@ -3,6 +3,7 @@
 namespace TantHammar\LaravelRules\Rules;
 
 use TantHammar\LaravelRules\Rules\FinnishBusinessId;
+use TantHammar\LaravelRules\Rules\SpanishBusinessId;
 use Illuminate\Contracts\Validation\Rule;
 
 class PersonOrOrgNummer implements Rule
@@ -18,7 +19,8 @@ class PersonOrOrgNummer implements Rule
         return
             (new OrgNummer)->passes(null, $value) ||
             (new PersonNummer)->passes(null, $value) ||
-            (new FinnishBusinessId)->passes(null, $value);
+            (new FinnishBusinessId)->passes(null, $value) ||
+            (new SpanishBusinessId)->passes(null, $value);
     }
 
     /**

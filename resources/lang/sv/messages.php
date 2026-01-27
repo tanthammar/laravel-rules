@@ -22,4 +22,6 @@ return [
     'vat-invalid' => ':Attribute är ej ett giltigt momsregistreringsnummer',
     'vat-name-unknown' => 'Juridiskt namn saknas',
     'total-file-sizes' => 'Summan av filernas storlek får inte överstiga :kb Kb.',
+    'finnish-business-id' => ':Attribute måste vara ett giltigt finskt företags-ID (Y-tunnus).',
+    'spanish-business-id' => ':Attribute måste vara ett giltigt spanskt företags-ID (NIF/CIF).',
 ];
