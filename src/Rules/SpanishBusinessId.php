@@ -5,8 +5,31 @@ namespace TantHammar\LaravelRules\Rules;
 use Closure;
 use Illuminate\Contracts\Validation\Rule;
 
+/**
+ * Validates Spanish tax identification numbers:
+ * - CIF: Company ID (Letter + 7 digits + control) Example: B82683907
+ * - NIF/DNI: Spanish resident personal ID (8 digits + letter) Example: 12345678Z
+ * - NIE: Foreigner ID (X/Y/Z + 7 digits + letter) Example: X1234567L
+ *
+ * Accepts optional ES prefix for VAT format (e.g., ESB82683907)
+ */
 class SpanishBusinessId implements Rule
 {
+    // NIF/NIE checksum: number % 23 maps to this letter sequence
+    private const NIF_LETTERS = 'TRWAGMYFPDXBNJZSQVHLCKE';
+
+    // Valid CIF organization type letters (excludes I, O, T to avoid confusion)
+    private const CIF_LETTERS = 'ABCDEFGHJKLMNPQRSUVW';
+
+    // CIF types requiring numeric control digit
+    private const CIF_NUMERIC_CONTROL = 'ABEH';
+
+    // CIF types requiring letter control digit
+    private const CIF_LETTER_CONTROL = 'KPQSW';
+
+    // CIF control letter mapping (0-9 → J,A,B,C,D,E,F,G,H,I)
+    private const CIF_CONTROL_LETTERS = 'JABCDEFGHI';
+
     /**
      * Determine if the validation rule passes.
      *
@@ -39,104 +62,96 @@ class SpanishBusinessId implements Rule
     }
 
     /**
-     * Validate Spanish NIF/CIF (Business ID).
-     *
-     * Format: Letter + 7 digits + control character (digit or letter)
-     * Example: B12345678, A58818501
+     * Validate any Spanish tax ID (CIF, NIF/DNI, or NIE).
      */
-    private function isValidSpanishBusinessId(string $cif): bool
+    private function isValidSpanishBusinessId(string $id): bool
     {
-        // Remove whitespace
-        $cif = trim($cif);
-
-        // Remove ES prefix if present (case insensitive) - used for VAT numbers
-        if (stripos($cif, 'ES') === 0) {
-            $cif = substr($cif, 2);
+        // Normalize: trim, remove ES prefix, remove separators, uppercase
+        $id = trim($id);
+        if (stripos($id, 'ES') === 0) {
+            $id = substr($id, 2);
         }
+        $id = strtoupper(str_replace([' ', '-', '.'], '', $id));
 
-        // Remove hyphens and spaces
-        $cif = str_replace([' ', '-'], '', $cif);
-
-        // Convert to uppercase
-        $cif = strtoupper($cif);
-
-        // Must be exactly 9 characters
-        if (strlen($cif) !== 9) {
+        if (strlen($id) !== 9) {
             return false;
         }
 
-        // Valid organization type letters for Spanish CIF
-        $validLetters = 'ABCDEFGHJKLMNPQRSUVW';
+        $firstChar = $id[0];
 
-        // First character must be a valid organization type letter
-        $firstLetter = $cif[0];
-        if (strpos($validLetters, $firstLetter) === false) {
-            return false;
+        // NIE: X/Y/Z + 7 digits + letter (foreigners)
+        if (in_array($firstChar, ['X', 'Y', 'Z'], true)) {
+            if (! preg_match('/^[XYZ]\d{7}[A-Z]$/', $id)) {
+                return false;
+            }
+            // Replace X=0, Y=1, Z=2, then use NIF algorithm
+            $number = (int) (strtr($firstChar, 'XYZ', '012') . substr($id, 1, 7));
+            return $id[8] === self::NIF_LETTERS[$number % 23];
         }
 
-        // Characters 2-8 must be digits (7 digits total)
-        $digits = substr($cif, 1, 7);
-        if (!ctype_digit($digits)) {
-            return false;
+        // NIF/DNI: 8 digits + letter (Spanish residents)
+        if (ctype_digit($firstChar)) {
+            if (! preg_match('/^\d{8}[A-Z]$/', $id)) {
+                return false;
+            }
+            $number = (int) substr($id, 0, 8);
+            return $id[8] === self::NIF_LETTERS[$number % 23];
         }
 
-        // Calculate control digit
-        $controlDigit = $this->calculateControlDigit($digits);
-
-        // Last character is the control character
-        $controlChar = $cif[8];
-
-        // Letters that require numeric control digit
-        $numericControlLetters = 'ABEH';
-
-        // Letters that require letter control digit
-        $letterControlLetters = 'PQSW';
-
-        // Control letter mapping (0-9 maps to J, A, B, C, D, E, F, G, H, I)
-        $controlLetters = 'JABCDEFGHI';
-
-        if (strpos($numericControlLetters, $firstLetter) !== false) {
-            // Must be a digit
-            return ctype_digit($controlChar) && (int) $controlChar === $controlDigit;
+        // CIF: Letter + 7 digits + control (companies)
+        if (str_contains(self::CIF_LETTERS, $firstChar)) {
+            if (! preg_match('/^[A-Z]\d{7}[A-Z0-9]$/', $id)) {
+                return false;
+            }
+            return $this->isValidCifControl($id);
         }
 
-        if (strpos($letterControlLetters, $firstLetter) !== false) {
-            // Must be a letter
-            return $controlChar === $controlLetters[$controlDigit];
-        }
-
-        // For other letters, can be either digit or letter
-        if (ctype_digit($controlChar)) {
-            return (int) $controlChar === $controlDigit;
-        }
-
-        return $controlChar === $controlLetters[$controlDigit];
+        return false;
     }
 
     /**
-     * Calculate the control digit for Spanish CIF.
+     * Validate CIF control character (digit or letter depending on org type).
      */
-    private function calculateControlDigit(string $digits): int
+    private function isValidCifControl(string $cif): bool
+    {
+        $orgType = $cif[0];
+        $digits = substr($cif, 1, 7);
+        $control = $cif[8];
+
+        $expectedDigit = $this->calculateCifControlDigit($digits);
+        $expectedLetter = self::CIF_CONTROL_LETTERS[$expectedDigit];
+
+        // Some org types require numeric, some require letter, others accept both
+        if (str_contains(self::CIF_NUMERIC_CONTROL, $orgType)) {
+            return $control === (string) $expectedDigit;
+        }
+        if (str_contains(self::CIF_LETTER_CONTROL, $orgType)) {
+            return $control === $expectedLetter;
+        }
+        return $control === (string) $expectedDigit || $control === $expectedLetter;
+    }
+
+    /**
+     * Calculate CIF control digit using standard algorithm.
+     */
+    private function calculateCifControlDigit(string $digits): int
     {
         $sumOdd = 0;
         $sumEven = 0;
 
         for ($i = 0; $i < 7; $i++) {
             $digit = (int) $digits[$i];
-
             if ($i % 2 === 0) {
-                // Odd positions (0, 2, 4, 6): multiply by 2, subtract 9 if >= 10
+                // Odd positions: multiply by 2, sum digits if >= 10
                 $doubled = $digit * 2;
                 $sumOdd += $doubled >= 10 ? $doubled - 9 : $doubled;
             } else {
-                // Even positions (1, 3, 5): add directly
+                // Even positions: add directly
                 $sumEven += $digit;
             }
         }
 
-        $total = $sumOdd + $sumEven;
-        $lastDigit = $total % 10;
-
+        $lastDigit = ($sumOdd + $sumEven) % 10;
         return $lastDigit === 0 ? 0 : 10 - $lastDigit;
     }
 }
