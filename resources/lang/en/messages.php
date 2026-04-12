@@ -24,4 +24,5 @@ return [
     'total-file-sizes' => 'The sum of all file sizes should not exeed :kb Kb.',
     'finnish-business-id' => 'The :attribute must be a valid Finnish Business ID (Y-tunnus).',
     'spanish-business-id' => 'The :attribute must be a valid Spanish Business ID (NIF/CIF).',
+    'estonian-business-id' => 'The :attribute must be a valid Estonian Business ID (registrikood).',
 ];

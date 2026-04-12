@@ -24,4 +24,5 @@ return [
     'total-file-sizes' => 'Summan av filernas storlek får inte överstiga :kb Kb.',
     'finnish-business-id' => ':Attribute måste vara ett giltigt finskt företags-ID (Y-tunnus).',
     'spanish-business-id' => ':Attribute måste vara ett giltigt spanskt företags-ID (NIF/CIF).',
+    'estonian-business-id' => ':Attribute måste vara ett giltigt estniskt företags-ID (registrikood).',
 ];
