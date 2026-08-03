@@ -2,8 +2,11 @@
 
 namespace TantHammar\LaravelRules\Rules;
 
+use Closure;
 use Illuminate\Contracts\Validation\Rule;
 use Mpociot\VatCalculator\Exceptions\VATCheckUnavailableException;
+use Mpociot\VatCalculator\VatCalculator;
+use TantHammar\LaravelRules\Services\EuVatPrefixes;
 
 /**
  * This calls an VIES api and throws error if service is unavailable
@@ -14,13 +17,12 @@ use Mpociot\VatCalculator\Exceptions\VATCheckUnavailableException;
  */
 class VatNumberAPI implements Rule
 {
-    protected bool $serviceUnavailable = false;
-
     /**
      * Determine if the validation rule passes.
      *
-     * @param string $attribute
-     * @param mixed $value
+     * @param  string  $attribute
+     * @param  mixed  $value
+     *
      * @throws VATCheckUnavailableException
      */
     public function passes($attribute, $value): bool
@@ -29,10 +31,20 @@ class VatNumberAPI implements Rule
             return false;
         }
 
-        // Do not use Facade. Configure VatCalculator to throw an error when country != GB, else only bool false is returned
-        $calculator = new \Mpociot\VatCalculator\VatCalculator(['forward_soap_faults' => true]);
+        $prefix = EuVatPrefixes::of($value);
 
-        //This check validates via external api, throws error if service is unavailable
+        if (! ctype_alpha($prefix)) {
+            return false;
+        }
+
+        if (! EuVatPrefixes::contains($prefix)) {
+            throw new VATCheckUnavailableException("VIES does not cover VAT prefix $prefix");
+        }
+
+        // Do not use Facade. Configure VatCalculator to throw an error when country != GB, else only bool false is returned
+        $calculator = new VatCalculator(['forward_soap_faults' => true]);
+
+        // This check validates via external api, throws error if service is unavailable
         return $calculator->isValidVATNumber($value);
 
     }
@@ -45,12 +57,12 @@ class VatNumberAPI implements Rule
         return trans('laravel-rules::messages.vat-invalid');
     }
 
-    //Laravel 10
+    // Laravel 10
 
     /**
      * @throws VATCheckUnavailableException
      */
-    public function validate(string $attribute, mixed $value, \Closure $fail): void
+    public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         if (! $this->passes($attribute, $value)) {
             $fail($this->message());

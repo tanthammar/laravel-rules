@@ -7,6 +7,7 @@ enum BusinessNameLookupError: string
     case Unknown = 'unknown';
     case ServiceUnavailable = 'service_unavailable';
     case Invalid = 'invalid'; //Vat number is invalid, unable to get legal name
+    case Unsupported = 'unsupported';
 
     public function label(): string
     {
@@ -14,6 +15,7 @@ enum BusinessNameLookupError: string
             self::Unknown => 'Unknown',
             self::ServiceUnavailable => 'Service Unavailable',
             self::Invalid => 'Invalid VAT ID',
+            self::Unsupported => 'Unsupported, non-EU country',
         };
     }
 }
