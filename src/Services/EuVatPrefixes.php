@@ -19,6 +19,15 @@ class EuVatPrefixes
         return strtoupper(substr($vatID, 0, 2));
     }
 
+    public static function normalize(?string $vatID): ?string
+    {
+        if (blank($vatID)) {
+            return null;
+        }
+
+        return strtoupper(str_replace([' ', "\xC2\xA0", "\xA0", '-', '.', ','], '', trim($vatID)));
+    }
+
     /**
      * Non-EU prefixes that VatCalculator can still regex check, but VIES cannot verify.
      */

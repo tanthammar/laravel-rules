@@ -17,6 +17,8 @@ use TantHammar\LaravelRules\Services\EuVatPrefixes;
  */
 class VatNumberAPI implements Rule
 {
+    public const MIN_LENGTH = 8;
+
     /**
      * Determine if the validation rule passes.
      *
@@ -31,18 +33,22 @@ class VatNumberAPI implements Rule
             return false;
         }
 
+        $value = EuVatPrefixes::normalize($value);
+
         $prefix = EuVatPrefixes::of($value);
 
         if (! ctype_alpha($prefix)) {
             return false;
         }
 
-        if (! EuVatPrefixes::contains($prefix)) {
-            throw new VATCheckUnavailableException("VIES does not cover VAT prefix $prefix");
-        }
-
         // Do not use Facade. Configure VatCalculator to throw an error when country != GB, else only bool false is returned
         $calculator = new VatCalculator(['forward_soap_faults' => true]);
+
+        if (! EuVatPrefixes::contains($prefix)) {
+            return EuVatPrefixes::hasFormatPattern($prefix)
+                ? $calculator->isValidVatNumberFormat($value)
+                : strlen($value) >= self::MIN_LENGTH;
+        }
 
         // This check validates via external api, throws error if service is unavailable
         return $calculator->isValidVATNumber($value);

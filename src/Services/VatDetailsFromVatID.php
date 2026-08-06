@@ -2,7 +2,6 @@
 
 namespace TantHammar\LaravelRules\Services;
 
-use TantHammar\LaravelRules\Enums\BusinessNameLookupError;
 use TantHammar\LaravelRules\Rules\VatNumberFormat;
 
 /**
@@ -28,7 +27,9 @@ class VatDetailsFromVatID
             return $empty;
         }
 
-        //do simple validation before calling external api
+        $vatID = EuVatPrefixes::normalize($vatID);
+
+        // do simple validation before calling external api
         if (! (new VatNumberFormat)->passes(null, $vatID)) {
             return $empty;
         }
@@ -37,7 +38,7 @@ class VatDetailsFromVatID
         $calculator = new \Mpociot\VatCalculator\VatCalculator(['forward_soap_faults' => true]);
         try {
             $object = $calculator->getVATDetails($vatID);
-            return  is_object($object) ? $object : $empty;
+            return is_object($object) ? $object : $empty;
         } catch (\Exception) {
             return $empty;
         }

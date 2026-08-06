@@ -19,11 +19,6 @@ class VatNumberAPIWithFormatFallback implements Rule
      */
     public const MIN_LENGTH = 8;
 
-    protected static function normalize(string $vatNumber): string
-    {
-        return str_replace([' ', "\xC2\xA0", "\xA0", '-', '.', ','], '', trim($vatNumber));
-    }
-
     /**
      * Determine if the validation rule passes.
      *
@@ -35,6 +30,8 @@ class VatNumberAPIWithFormatFallback implements Rule
         if (blank($value)) {
             return false;
         }
+
+        $value = EuVatPrefixes::normalize($value);
 
         $prefix = EuVatPrefixes::of($value);
 
@@ -48,7 +45,7 @@ class VatNumberAPIWithFormatFallback implements Rule
         if (! EuVatPrefixes::contains($prefix)) {
             return EuVatPrefixes::hasFormatPattern($prefix)
                 ? $calculator->isValidVatNumberFormat($value)
-                : strlen(self::normalize($value)) >= self::MIN_LENGTH;
+                : strlen($value) >= self::MIN_LENGTH;
         }
 
         try {

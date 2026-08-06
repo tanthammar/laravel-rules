@@ -17,7 +17,7 @@ class VatNumberFormat implements Rule
             return false;
         }
 
-        return (new VatCalculator)->isValidVatNumberFormat($value);
+        return (new VatCalculator)->isValidVatNumberFormat(EuVatPrefixes::normalize($value));
 
     }
 

@@ -17,6 +17,8 @@ class BusinessNameFromVatID
 
         try {
 
+            $vatID = EuVatPrefixes::normalize($vatID);
+
             $prefix = EuVatPrefixes::of($vatID);
 
             // do simple validation before calling external api
