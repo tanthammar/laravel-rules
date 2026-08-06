@@ -5,6 +5,7 @@ namespace TantHammar\LaravelRules\Rules;
 use Closure;
 use Illuminate\Contracts\Validation\Rule;
 use Mpociot\VatCalculator\VatCalculator;
+use TantHammar\LaravelRules\Services\EuVatPrefixes;
 
 /**
  * This never calls an external api, only does regex comparison
