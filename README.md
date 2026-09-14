@@ -16,7 +16,6 @@ composer require tanthammar/laravel-rules
 ```php
 use TantHammar\LaravelRules\Rules\PersonNummer;
 use TantHammar\LaravelRules\Rules\OrgNummer;
-use TantHammar\LaravelRules\Rules\PersonOrOrgNummer;
 
 // Swedish personal identification numbers
 $request->validate([
@@ -26,11 +25,6 @@ $request->validate([
 // Swedish organization numbers
 $request->validate([
     'org_number' => [new OrgNummer]
-]);
-
-// Accept either personal or organization numbers
-$request->validate([
-    'number' => [new PersonOrOrgNummer]
 ]);
 ```
 
@@ -218,16 +212,6 @@ if ($details->valid) {
 }
 ```
 
-### Business Type Detection
-```php
-use TantHammar\LaravelRules\Helpers\BusinessTypeFromNr;
-
-// Determine if number is personal, business, or undefined
-$type = BusinessTypeFromNr::make('199001011234'); // Returns: 'individual'
-$type = BusinessTypeFromNr::make('556556567801'); // Returns: 'business'
-$type = BusinessTypeFromNr::make('invalid');     // Returns: 'undefined'
-```
-
 ## Legacy Helper Methods (Deprecated)
 
 These methods are deprecated but still available for backwards compatibility:
@@ -240,9 +224,6 @@ $name = RuleHelpers::getBusinessNameFromVatID($vatId);
 
 // Use VatDetailsFromVatID::lookup() instead  
 $details = RuleHelpers::getVATDetailsFromVatID($vatId);
-
-// Use BusinessTypeFromNr::make() instead
-$type = RuleHelpers::check_business_type($number);
 ```
 
 

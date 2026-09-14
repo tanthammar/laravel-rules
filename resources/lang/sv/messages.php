@@ -25,4 +25,6 @@ return [
     'finnish-business-id' => ':Attribute måste vara ett giltigt finskt företags-ID (Y-tunnus).',
     'spanish-business-id' => ':Attribute måste vara ett giltigt spanskt företags-ID (NIF/CIF).',
     'estonian-business-id' => ':Attribute måste vara ett giltigt estniskt företags-ID (registrikood).',
+    'norwegian-business-id' => ':Attribute måste vara ett giltigt norskt organisationsnummer eller personnummer.',
+    'danish-business-id' => ':Attribute måste vara ett giltigt danskt CVR-nummer eller CPR-nummer.',
 ];

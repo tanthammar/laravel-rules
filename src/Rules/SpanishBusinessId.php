@@ -7,7 +7,7 @@ use Illuminate\Contracts\Validation\Rule;
 
 /**
  * Validates Spanish tax identification numbers:
- * - CIF: Company ID (Letter + 7 digits + control) Example: B82683907
+ * - CIF: Company ID (Letter + 7 digits + control) Example: A58818501
  * - NIF/DNI: Spanish resident personal ID (8 digits + letter) Example: 12345678Z
  * - NIE: Foreigner or Non-Resident Entity ID (X/Y/Z + 7 digits + letter) Example: X1234567L
  *
@@ -61,17 +61,39 @@ class SpanishBusinessId implements Rule
         }
     }
 
+    /** NIF/DNI or NIE (individuals) */
+    public function isPersonalCode(string $id): bool
+    {
+        $id = $this->normalize($id);
+
+        return $id !== '' && ! str_contains(self::CIF_LETTERS, $id[0]) && $this->isValidSpanishBusinessId($id);
+    }
+
+    /** CIF (companies) */
+    public function isBusinessCode(string $id): bool
+    {
+        $id = $this->normalize($id);
+
+        return $id !== '' && str_contains(self::CIF_LETTERS, $id[0]) && $this->isValidSpanishBusinessId($id);
+    }
+
+    /** Trim, remove ES prefix and separators, uppercase */
+    private function normalize(string $id): string
+    {
+        $id = trim($id);
+        if (stripos($id, 'ES') === 0) {
+            $id = substr($id, 2);
+        }
+
+        return strtoupper(str_replace([' ', '-', '.'], '', $id));
+    }
+
     /**
      * Validate any Spanish tax ID (CIF, NIF/DNI, or NIE).
      */
     private function isValidSpanishBusinessId(string $id): bool
     {
-        // Normalize: trim, remove ES prefix, remove separators, uppercase
-        $id = trim($id);
-        if (stripos($id, 'ES') === 0) {
-            $id = substr($id, 2);
-        }
-        $id = strtoupper(str_replace([' ', '-', '.'], '', $id));
+        $id = $this->normalize($id);
 
         if (strlen($id) !== 9) {
             return false;

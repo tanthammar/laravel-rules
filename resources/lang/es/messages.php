@@ -24,4 +24,6 @@ return [
     'total-file-sizes' => 'La suma de los tamaños de archivo no debe superar :kb Kb.',
     'finnish-business-id' => 'El campo :attribute debe ser un número de empresa finlandés válido (Y-tunnus).',
     'spanish-business-id' => 'El campo :attribute debe ser un NIF/CIF español válido.',
+    'norwegian-business-id' => 'El campo :attribute debe ser un número de organización o de identidad noruego válido.',
+    'danish-business-id' => 'El campo :attribute debe ser un número CVR o CPR danés válido.',
 ];

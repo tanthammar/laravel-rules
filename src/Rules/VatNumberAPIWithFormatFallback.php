@@ -39,6 +39,10 @@ class VatNumberAPIWithFormatFallback implements Rule
             return false;
         }
 
+        if (($verified = EuVatPrefixes::verifyWithoutVies($value)) !== null) {
+            return $verified;
+        }
+
         // Do not use Facade. Configure VatCalculator to throw an error when country != GB, else only bool false is returned
         $calculator = new VatCalculator(['forward_soap_faults' => true]);
 

@@ -25,4 +25,6 @@ return [
     'finnish-business-id' => 'The :attribute must be a valid Finnish Business ID (Y-tunnus).',
     'spanish-business-id' => 'The :attribute must be a valid Spanish Business ID (NIF/CIF).',
     'estonian-business-id' => 'The :attribute must be a valid Estonian Business ID (registrikood).',
+    'norwegian-business-id' => 'The :attribute must be a valid Norwegian organisation number or national identity number.',
+    'danish-business-id' => 'The :attribute must be a valid Danish CVR number or CPR number.',
 ];

@@ -2,7 +2,6 @@
 
 namespace TantHammar\LaravelRules;
 
-use TantHammar\LaravelRules\Helpers\BusinessTypeFromNr;
 use TantHammar\LaravelRules\Services\BusinessNameFromVatID;
 use TantHammar\LaravelRules\Services\VatDetailsFromVatID;
 
@@ -22,13 +21,5 @@ class RuleHelpers
     public static function getVATDetailsFromVatID(string $vatID): object
     {
         return VatDetailsFromVatID::lookup($vatID);
-    }
-
-    /**
-     * @deprecated use BusinessTypeFromNr::make(string|int $nr)
-     */
-    public static function check_business_type(string | int $nr): string
-    {
-        return BusinessTypeFromNr::make($nr);
     }
 }

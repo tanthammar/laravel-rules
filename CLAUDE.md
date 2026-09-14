@@ -74,7 +74,6 @@ FakePhoneNumber::gdprSafe() // GDPR-compliant test numbers
 The package has migrated from static helper methods to dedicated service classes:
 - `RuleHelpers::getBusinessNameFromVatID()` → `BusinessNameFromVatID::lookup()`
 - `RuleHelpers::getVATDetailsFromVatID()` → `VatDetailsFromVatID::lookup()`
-- `RuleHelpers::check_business_type()` → `BusinessTypeFromNr::make()`
 
 ## Internationalization
 
