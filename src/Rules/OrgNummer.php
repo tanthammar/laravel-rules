@@ -2,12 +2,12 @@
 
 namespace TantHammar\LaravelRules\Rules;
 
-use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Contracts\Validation\ValidationRule;
 use Organisationsnummer\Organisationsnummer;
 use TantHammar\LaravelExtras\NoWhiteSpace;
 
 /** Validates SWEDISH business numbers */
-class OrgNummer implements Rule
+class OrgNummer implements ValidationRule
 {
     /**
      * Determine if the validation rule passes.

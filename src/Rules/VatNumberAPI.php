@@ -3,7 +3,7 @@
 namespace TantHammar\LaravelRules\Rules;
 
 use Closure;
-use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Contracts\Validation\ValidationRule;
 use Mpociot\VatCalculator\Exceptions\VATCheckUnavailableException;
 use Mpociot\VatCalculator\VatCalculator;
 use TantHammar\LaravelRules\Services\EuVatPrefixes;
@@ -15,7 +15,7 @@ use TantHammar\LaravelRules\Services\EuVatPrefixes;
  * If your form is prevented to be submitted if there are validation errors, your form may malfunction when service is down
  * Check server status for all countries https://ec.europa.eu/taxation_customs/vies/#/self-monitoring
  */
-class VatNumberAPI implements Rule
+class VatNumberAPI implements ValidationRule
 {
     public const MIN_LENGTH = 8;
 

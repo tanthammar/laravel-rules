@@ -3,7 +3,7 @@
 namespace TantHammar\LaravelRules\Rules;
 
 use Closure;
-use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Contracts\Validation\ValidationRule;
 
 /**
  * Validates Estonian tax identification numbers:
@@ -15,7 +15,7 @@ use Illuminate\Contracts\Validation\Rule;
  *
  * Accepts optional EE prefix. Both formats use the same mod-11 check digit algorithm.
  */
-class EstonianBusinessId implements Rule
+class EstonianBusinessId implements ValidationRule
 {
     public function passes($attribute, $value): bool
     {

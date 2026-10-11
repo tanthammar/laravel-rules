@@ -3,7 +3,7 @@
 namespace TantHammar\LaravelRules\Rules;
 
 use Closure;
-use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Contracts\Validation\ValidationRule;
 
 /**
  * Validates Norwegian identification numbers:
@@ -18,7 +18,7 @@ use Illuminate\Contracts\Validation\Rule;
  *     D-nummer, issued to foreign residents, is accepted: it adds 40 to the day.
  *     H-nummer, internal to the health sector, is not: it adds 40 to the month.
  */
-class NorwegianBusinessId implements Rule
+class NorwegianBusinessId implements ValidationRule
 {
     private const ORG_WEIGHTS = [3, 2, 7, 6, 5, 4, 3, 2];
 

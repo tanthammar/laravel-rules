@@ -4,9 +4,9 @@ namespace TantHammar\LaravelRules\Rules;
 
 use byrokrat\banking\AccountFactory;
 use byrokrat\banking\Exception;
-use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Contracts\Validation\ValidationRule;
 
-class BankKonto implements Rule
+class BankKonto implements ValidationRule
 {
     /**
      * Determine if the validation rule passes.

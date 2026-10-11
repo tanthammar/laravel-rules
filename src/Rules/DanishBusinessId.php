@@ -3,7 +3,7 @@
 namespace TantHammar\LaravelRules\Rules;
 
 use Closure;
-use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Contracts\Validation\ValidationRule;
 
 /**
  * Validates Danish identification numbers:
@@ -19,7 +19,7 @@ use Illuminate\Contracts\Validation\Rule;
  *
  * @see https://www.cpr.dk/cpr-systemet/personnumre-uden-kontrolciffer-modulus-11-kontrol
  */
-class DanishBusinessId implements Rule
+class DanishBusinessId implements ValidationRule
 {
     private const CVR_WEIGHTS = [2, 7, 6, 5, 4, 3, 2, 1];
 

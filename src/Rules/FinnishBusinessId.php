@@ -3,7 +3,7 @@
 namespace TantHammar\LaravelRules\Rules;
 
 use Closure;
-use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Contracts\Validation\ValidationRule;
 
 /**
  * Validates Finnish tax identification numbers:
@@ -14,7 +14,7 @@ use Illuminate\Contracts\Validation\Rule;
  *
  * Accepts optional FI prefix on Y-tunnus.
  */
-class FinnishBusinessId implements Rule
+class FinnishBusinessId implements ValidationRule
 {
     private const HETU_CHECK_CHARS = '0123456789ABCDEFHJKLMNPRSTUVWXY';
 

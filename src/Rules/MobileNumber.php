@@ -5,12 +5,12 @@ namespace TantHammar\LaravelRules\Rules;
 use Brick\PhoneNumber\PhoneNumber as Validator;
 use Brick\PhoneNumber\PhoneNumberParseException;
 use Brick\PhoneNumber\PhoneNumberType;
-use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Contracts\Validation\ValidationRule;
 
 /**
  * The $value must start with a country code, like 46 for Sweden. "+" is prepended, if missing.
  */
-class MobileNumber implements Rule
+class MobileNumber implements ValidationRule
 {
     /**
      * @param  string  $attribute

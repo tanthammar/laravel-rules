@@ -3,7 +3,7 @@
 namespace TantHammar\LaravelRules\Rules;
 
 use Closure;
-use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Contracts\Validation\ValidationRule;
 use Mpociot\VatCalculator\Exceptions\VATCheckUnavailableException;
 use Mpociot\VatCalculator\VatCalculator;
 use TantHammar\LaravelRules\Services\EuVatPrefixes;
@@ -12,7 +12,7 @@ use TantHammar\LaravelRules\Services\EuVatPrefixes;
  * This calls an VIES api falls back to number format check if service is unavailable
  * https://ec.europa.eu/taxation_customs/vies/#/self-monitoring
  */
-class VatNumberAPIWithFormatFallback implements Rule
+class VatNumberAPIWithFormatFallback implements ValidationRule
 {
     /**
      * Shortest EU vat number is 10 chars, so this only rejects the obviously too short.

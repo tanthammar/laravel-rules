@@ -4,14 +4,14 @@ namespace App\Rules;
 
 namespace TantHammar\LaravelRules\Rules;
 
-use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Contracts\Validation\ValidationRule;
 use Storage;
 
 /**
  * $value must be an array with files
  * Default max is 5 MB (5000Kb)
  */
-class MaxTotalFileSize implements Rule
+class MaxTotalFileSize implements ValidationRule
 {
     public function __construct(
         public int $maxKb = 5000

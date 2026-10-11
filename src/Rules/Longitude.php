@@ -2,9 +2,9 @@
 
 namespace TantHammar\LaravelRules\Rules;
 
-use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Contracts\Validation\ValidationRule;
 
-class Longitude implements Rule
+class Longitude implements ValidationRule
 {
     public function passes($attribute, $value): bool
     {

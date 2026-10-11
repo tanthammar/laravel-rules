@@ -5,9 +5,9 @@ namespace TantHammar\LaravelRules\Rules;
 use byrokrat\banking\BankNames;
 use byrokrat\banking\Exception;
 use byrokrat\banking\PlusgiroFactory;
-use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Contracts\Validation\ValidationRule;
 
-class PlusGiro implements Rule
+class PlusGiro implements ValidationRule
 {
     /**
      * Determine if the validation rule passes.

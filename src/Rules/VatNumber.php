@@ -2,7 +2,7 @@
 
 namespace TantHammar\LaravelRules\Rules;
 
-use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Contracts\Validation\ValidationRule;
 use Mpociot\VatCalculator\Exceptions\VATCheckUnavailableException;
 use Mpociot\VatCalculator\Facades\VatCalculator;
 
@@ -10,7 +10,7 @@ use Mpociot\VatCalculator\Facades\VatCalculator;
  * WARNING
  * @deprecated use VatNumberApi, VatNumberAPIWithFormatFallback or VatNumberFormat
  */
-class VatNumber implements Rule
+class VatNumber implements ValidationRule
 {
     protected bool $serviceUnavailable = false;
 

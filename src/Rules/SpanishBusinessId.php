@@ -3,7 +3,7 @@
 namespace TantHammar\LaravelRules\Rules;
 
 use Closure;
-use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Contracts\Validation\ValidationRule;
 
 /**
  * Validates Spanish tax identification numbers:
@@ -13,7 +13,7 @@ use Illuminate\Contracts\Validation\Rule;
  *
  * Accepts optional ES prefix for VAT format (e.g., ESB82683907)
  */
-class SpanishBusinessId implements Rule
+class SpanishBusinessId implements ValidationRule
 {
     // NIF/NIE checksum: number % 23 maps to this letter sequence
     private const NIF_LETTERS = 'TRWAGMYFPDXBNJZSQVHLCKE';

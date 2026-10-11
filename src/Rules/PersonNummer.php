@@ -2,11 +2,11 @@
 
 namespace TantHammar\LaravelRules\Rules;
 
-use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Contracts\Validation\ValidationRule;
 use Personnummer\Personnummer as PersonNummerVerifier;
 use TantHammar\LaravelExtras\CleanNumber;
 
-class PersonNummer implements Rule
+class PersonNummer implements ValidationRule
 {
     /**
      * Determine if the validation rule passes.

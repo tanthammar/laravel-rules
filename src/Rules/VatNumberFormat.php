@@ -3,14 +3,14 @@
 namespace TantHammar\LaravelRules\Rules;
 
 use Closure;
-use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Contracts\Validation\ValidationRule;
 use Mpociot\VatCalculator\VatCalculator;
 use TantHammar\LaravelRules\Services\EuVatPrefixes;
 
 /**
  * This never calls an external api, only does regex comparison
  */
-class VatNumberFormat implements Rule
+class VatNumberFormat implements ValidationRule
 {
     public function passes($attribute, $value): bool
     {
