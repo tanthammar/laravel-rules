@@ -31,13 +31,7 @@ class FakeMobileNumber extends \Faker\Provider\PhoneNumber
     {
         $format = static::randomElement($international ? static::$internationalMobileFormats : static::$localMobileFormats);
 
-        $callback = function ($matches) {
-            return $this->format($matches[1]);
-        };
-
-        $val = preg_replace_callback('/{{\s?(\w+|[\w\\\]+->\w+?)\s?}}/u', $callback, $format);
-
-        return self::numerify($val);
+        return self::numerify(fake()->parse($format));
     }
 
     /* Publishable GDPR Safe Swedish mobile number series */

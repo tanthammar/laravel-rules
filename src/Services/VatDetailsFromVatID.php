@@ -14,14 +14,14 @@ class VatDetailsFromVatID
 {
     public static function lookup(string $vatID): object
     {
-        $empty = new \stdClass([
+        $empty = (object) [
             'countryCode' => '',
             'vatNumber' => '',
             'requestDate' => '',
             'valid' => false,
             'name' => '',
             'address' => '',
-        ]);
+        ];
 
         if (! $vatID) {
             return $empty;
